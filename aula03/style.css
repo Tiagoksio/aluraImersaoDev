@@ -51,6 +51,17 @@ body {
   img {
     padding: auto;
     margin: auto;
+    border-radius: 30px;
+    box-shadow: 5px 5px 10px rgba(15, 15, 15, .3);
+  }
+  #placar {
+    color: red;
+    background-color: rgba(15, 15, 15, .3);
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(15, 15, 15, .3);
+  }
+  #placar p, hr{
+    margin-top: 0px;
   }
   @media (max-height: 500px) {
     body {
