@@ -1,0 +1,59 @@
+body {
+    font-family: 'Roboto Mono',monospace;
+    min-height: 600px;
+    background-image: url('https://gizmodo.uol.com.br/wp-content/blogs.dir/8/files/2014/05/shutterstock_148198838.jpg');
+    background-color: #000000;
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+  }
+  
+  .container {
+    text-align: center;
+    padding: 20px;
+    height: 100vh;
+  }
+  
+  .page-title {
+    color: #ffffff;
+    margin: 0 0 5px;
+  }
+  
+  .page-subtitle {
+    color: #ffffff;
+    margin-top: 5px;
+  }
+  
+  .page-logo {
+    width: 200px;
+    margin-top: 10px;
+  }
+  
+  .alura-logo {
+    width: 40px;
+    position: absolute;
+    top: 10px;
+    right:10px;
+  }
+  
+  #painel {
+    display: flex;
+    height: 150px;
+    width: 450px;
+    margin: 50px auto 0px;
+  }
+  #placar {
+    height: 50px;
+    width: 150px;
+    margin-top: 50px;
+    background-color: #ffffff;
+  }
+  img {
+    padding: auto;
+    margin: auto;
+  }
+  @media (max-height: 500px) {
+    body {
+      min-height:800px;
+    }
+  }
