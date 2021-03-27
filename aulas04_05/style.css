@@ -59,12 +59,13 @@ body {
       float: left;
   }
   #rodape {
-    margin: 0 0 15px;
+    margin: 0 auto 15px;
+    width: 500px;
   }
   
   #rodape input {
     display: block;
-    margin: 0 15px;
+    margin: 0 auto 15px;
     padding: 10px 15px;
   }
   
