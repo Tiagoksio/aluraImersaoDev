@@ -25,6 +25,7 @@ function addRodape() {
     procurarTxt.setAttribute('type', 'text')
     procurarTxt.setAttribute('placeholder', 'Nome do Filme')
     procurarTxt.setAttribute('size', '10')
+    procurarTxt.setAttribute('id', 'campoPesquisar')
     let rodape = document.querySelector('#rodape')
     rodape.appendChild(alinharPesquisaText)
     alinharPesquisaText.appendChild(procurarTxt)
@@ -62,6 +63,7 @@ function armazenar() {
         alert('Dados inválidos para efetuar cadastro')
     } else {
         listaFilmes.push(new filme (tituloForm, posterForm, trailerForm, sinopseForm))
+        console.log(listaFilmes[0])
         tituloForm = ''
         posterForm = ''
         trailerForm = ''
@@ -69,20 +71,35 @@ function armazenar() {
     }
     listarFilmes()
 }
-// function pesquisar() {
-    
-// }
+function detalhes(nomeDoFilme) {
+    document.querySelector('#detalhes').innerHTML = ''
+    for (let pos in listaFilmes) {
+        if (listaFilmes[pos].titulo == nomeDoFilme) {
+            document.querySelector('#detalhes').innerHTML = `
+            <h2>${listaFilmes[pos].titulo}</h2>
+            <p>${listaFilmes[pos].sinopse}</p>
+            <img src="${listaFilmes[pos].poster}">            
+            ${listaFilmes[pos].trailer}`           
+        }
+    }
+    alert('Filme não localizado')
+}
+function pesquisar() {
+    let nomeBusca = document.querySelector('#campoPesquisar').value
+    detalhes(nomeBusca)
+}
+
 function listarFilmes() {
     document.querySelector('h1').innerText = 'Aluraflix'
     document.querySelector('#conteudo').innerHTML = ''
     for (let i = 0; i < listaFilmes.length; i++) {
-        document.querySelector('#conteudo').innerHTML += `<img src="${listaFilmes[i].poster}">`
+        document.querySelector('#conteudo').innerHTML += `<input class='link-poster' type="image" src="${listaFilmes[i].poster}" onclick="detalhes('${listaFilmes[i].titulo}')">`
     }
     addRodape()
     var addFilme = document.querySelector('#adicionarFilme')
     addFilme.addEventListener('click', addFormulario)
-    // var botaoProcurar = document.querySelector('#pesquisar')
-    // botaoProcurar.addEventListener('click', pesquisar)
+    var botaoProcurar = document.querySelector('#pesquisar')
+    botaoProcurar.addEventListener('click', pesquisar)
 }
 listarFilmes()
 

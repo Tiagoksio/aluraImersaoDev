@@ -34,7 +34,7 @@ body {
     right:10px;
   }
 
-  #conteudo > img {
+  #conteudo > img, .link-poster{
     margin: 0 10px;
     box-shadow: 5px 5px 100px rgba(15, 15, 15, 0.9);
     width: 182px;
@@ -86,4 +86,25 @@ body {
   }
  #rodape div {
      display: block ruby;
+ }
+ #detalhes {
+    background-color: rgb(15, 15, 15);
+    opacity: .89;
+    border-radius: 10px;
+    padding: 15px;
+    width: 500px;
+    margin: auto;
+ }
+ #detalhes img {
+   float: left;
+ }
+ #detalhes h2 {
+   color: #ffffff;
+ }
+ #detalhes p {
+   float: right;
+   color: #ffffff;
+ }
+ iframe {
+    width: 500px;
  }
