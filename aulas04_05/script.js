@@ -79,10 +79,13 @@ function detalhes(nomeDoFilme) {
             <h2>${listaFilmes[pos].titulo}</h2>
             <p>${listaFilmes[pos].sinopse}</p>
             <img src="${listaFilmes[pos].poster}">            
-            ${listaFilmes[pos].trailer}`           
+            ${listaFilmes[pos].trailer}`
+            return 0    
         }
     }
     alert('Filme não localizado')
+    document.querySelector('#detalhes').innerHTML = ''
+
 }
 function pesquisar() {
     let nomeBusca = document.querySelector('#campoPesquisar').value
