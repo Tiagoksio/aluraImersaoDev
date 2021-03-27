@@ -36,7 +36,9 @@ body {
 
   #conteudo > img {
     margin: 0 10px;
-    box-shadow: 5px 5px 100px rgba(15, 15, 15, 0.9)
+    box-shadow: 5px 5px 100px rgba(15, 15, 15, 0.9);
+    width: 182px;
+    height: 268px;
   }
   form {
       background-color: rgb(15, 15, 15);
@@ -66,7 +68,7 @@ body {
     padding: 10px 15px;
   }
   
-  #rodape button {
+  button {
     border: 0;
     color: #ffffff;
     background: #DA1E26;
@@ -79,7 +81,7 @@ body {
     transition: .3s;
   }
   
-  #rodape button:hover {
+  button:hover {
     opacity:.8;
   }
  #rodape div {
