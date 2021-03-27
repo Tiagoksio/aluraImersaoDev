@@ -105,5 +105,3 @@ function listarFilmes() {
     botaoProcurar.addEventListener('click', pesquisar)
 }
 listarFilmes()
-
-
