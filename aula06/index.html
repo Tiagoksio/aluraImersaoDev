@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imersão Dev - Aula 06</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="main">
+        <h1>Jogo da Velha</h1>
+        <div id="jogo">
+        </div>
+        <div id="ranking">
+        <span onclick="fecharRanking()">&times;</span>
+        <h1>Tabela de classificação</h1>
+        <table style="width:100%">
+            <thead>
+                <tr>
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th>Vitórias</th>
+                    <th>Empates</th>
+                    <th>Derrotas</th>
+                    <th>Pontos</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaJogadores">
+            </tbody>
+        </table>
+        </div>
+        <div id="cadastrar">
+        <span onclick="fecharCadastro()">&times;</span>
+        <form action="">
+            <label for="iNome">Nome: </label><input type="text" id="iNome"><br>
+            <label for="iFoto">Foto: </label><input type="text" id="iFoto"><br>
+            <input type="submit" value="Cadastrar">
+        </form>
+        </div>
+        <nav id="menu">
+            <button>Jogar</button>
+            <button onclick="mostrarRanking()">Ranking</button>
+            <button onclick="cadastrarJogador()">Cadastrar Jogador</button>
+        </nav>
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>
