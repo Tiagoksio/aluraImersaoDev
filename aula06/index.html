@@ -33,14 +33,15 @@
         </div>
         <div id="cadastrar">
         <span onclick="fecharCadastro()">&times;</span>
-        <form action="">
-            <label for="iNome">Nome: </label><input type="text" id="iNome"><br>
-            <label for="iFoto">Foto: </label><input type="text" id="iFoto"><br>
-            <input type="submit" value="Cadastrar">
+        <h1>Cadastrar Novo Jogador</h1>
+        <form action="" oninput="coletarDados()">
+            <label for="iNome">Nome:</label><input type="text" id="iNome" placeholder="Nome"><br>
+            <label for="iFoto">Foto:</label><input type="text" id="iFoto" placeholder="url da imagem"><br>
+            <input id="confirmarCadastro" type="submit" value="Cadastrar">
         </form>
         </div>
         <nav id="menu">
-            <button>Jogar</button>
+            <button onclick="iniciarJogo()">Jogar</button>
             <button onclick="mostrarRanking()">Ranking</button>
             <button onclick="cadastrarJogador()">Cadastrar Jogador</button>
         </nav>

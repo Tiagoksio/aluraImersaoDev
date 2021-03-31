@@ -1,31 +1,47 @@
-
-var jogador = {
-    foto:'',
-    nome: '',
-    vitorias: 0,
-    empates: 0,
-    derrotas: 0,
-    pontos: 0
+// Controles html
+var ranking = document.querySelector('#ranking')
+var paginaDeCadastro = document.querySelector('#cadastrar')
+var paginaJogo = document.querySelector('#jogo')
+// dados de cadastro
+function jogador(foto, nome) {
+    this.foto = foto
+    this.nome = nome
+    this.vitorias = 0
+    this.empates = 0
+    this.derrotas = 0
+    this.pontos = 0
 }
 var jogadores = []
+//funções de exibição
 function mostrarRanking() {
-    let ranking = document.querySelector('#ranking')
     ranking.style.display = 'block'
+    paginaDeCadastro.style.display = 'none'
+    paginaJogo.style.display = 'none'
 }
 function fecharRanking() {
-    let ranking = document.querySelector('#ranking')
     ranking.style.display = 'none'
+    paginaJogo.style.display = 'grid'
+}
+function coletarDados() {
+    let foto = document.querySelector('#iFoto').value
+    let nome = document.querySelector('#iNome').value 
+    let confirmarCadastro = document.querySelector('#confirmarCadastro')
+    confirmarCadastro.addEventListener('click', novoJogador(foto, nome))   
+}
+function novoJogador(foto, nome) {
+    jogadores.push(new jogador(foto, nome))
+    console.log(jogadores)    
 }
 function cadastrarJogador() {
-    let paginaDeCadastro = document.querySelector('#cadastrar')
     paginaDeCadastro.style.display = 'block'
+    ranking.style.display = 'none'
+    paginaJogo.style.display = 'none'
     
 }
 function fecharCadastro() {
-    let paginaDeCadastro = document.querySelector('#cadastrar')
     paginaDeCadastro.style.display = 'none'
+    paginaJogo.style.display = 'grid'
 }
-
 function exibirJogadoresNaTela(jogadores) {
     var classificacao = ""
     for (var i = 0; i < jogadores.length; i++) {
@@ -39,6 +55,7 @@ function exibirJogadoresNaTela(jogadores) {
     var tabelaJogadores = document.getElementById('tabelaJogadores')
     tabelaJogadores.innerHTML = classificacao
 }
+//Funções de calculo de pontos
 function calculaPontos(jogador) {
     var pontos = (jogador.vitorias * 3) + jogador.empates
     return pontos
@@ -49,19 +66,18 @@ function adicionarVitoria(i) {
     jogador.pontos = calculaPontos(jogador)
     exibirJogadoresNaTela(jogadores)
 }
-
 function adicionarEmpate(i) {
     var jogador = jogadores[i]
     jogador.empates++
     jogador.pontos = calculaPontos(jogador)
     exibirJogadoresNaTela(jogadores)
 }
-
 function adicionarDerrota(i) {
     var jogador = jogadores[i]
     jogador.derrotas++
     exibirJogadoresNaTela(jogadores)
 }
+//Bloco referênte às regras do jogo
 var tabuleiro = ['','','','','','','','','']
 var simbolos = ["X", "O"]
 var jogoFinalizado = false
@@ -107,7 +123,13 @@ function imprimirTabuleiro(jogoDaVelha) {
         jogoDaVelha.innerHTML += '<div onclick = "jogada('+i+')">' + tabuleiro[i] + '</div>'
     }
 }
+function iniciarJogo() {
+    paginaDeCadastro.style.display = 'none'
+    ranking.style.display = 'none'
+    paginaJogo.style.display = 'grid'
+    
+}
+//chamadas
 imprimirTabuleiro(document.querySelector('#jogo'))
-
 exibirJogadoresNaTela(jogadores)
 
