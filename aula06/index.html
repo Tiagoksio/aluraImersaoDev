@@ -11,7 +11,15 @@
 <body>
     <div id="main">
         <h1>Jogo da Velha</h1>
-        <div id="jogo">
+        <div id="display-principal">
+            <div id="jogo">
+            </div>
+            <div id="playerSelect">
+                <select id="select-p1">
+                </select>
+                <select id="select-p2">
+                </select>
+            </div>
         </div>
         <div id="ranking">
         <span onclick="fecharRanking()">&times;</span>
@@ -34,18 +42,18 @@
         <div id="cadastrar">
         <span onclick="fecharCadastro()">&times;</span>
         <h1>Cadastrar Novo Jogador</h1>
-        <form action="" oninput="coletarDados()">
-            <label for="iNome">Nome:</label><input type="text" id="iNome" placeholder="Nome"><br>
-            <label for="iFoto">Foto:</label><input type="text" id="iFoto" placeholder="url da imagem"><br>
-            <input id="confirmarCadastro" type="submit" value="Cadastrar">
+        <form action="">
+            <label for="iNome">Nome:</label><input type="text" id="iNome" placeholder="Nome" required><br>
+            <label for="iFoto">Foto:</label><input type="text" id="iFoto" placeholder="url da imagem" required><br>
         </form>
+        <button onclick="novoJogador(document.querySelector('#iFoto').value, document.querySelector('#iNome').value)">Confirmar</button>
         </div>
         <nav id="menu">
             <button onclick="iniciarJogo()">Jogar</button>
             <button onclick="mostrarRanking()">Ranking</button>
             <button onclick="cadastrarJogador()">Cadastrar Jogador</button>
         </nav>
-    </div>
+    </div>   
 
 <script src="script.js"></script>
 </body>
