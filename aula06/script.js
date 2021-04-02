@@ -2,6 +2,8 @@
 var ranking = document.querySelector('#ranking')
 var paginaDeCadastro = document.querySelector('#cadastrar')
 var paginaJogo = document.querySelector('#display-principal')
+var selectPlayer01 = document.querySelector("#select-p1")
+var selectPlayer02 = document.querySelector("#select-p2")
 // dados de cadastro
 var jogadores = []
 function addJogador(foto, nome, vitorias, empates, derrotas, pontos) {
@@ -101,10 +103,10 @@ const sequenciaVitoriosa = [
 ]
 function gameOver() {
     for (let i = 0; i < sequenciaVitoriosa.length; i++) {
-        if((tabuleiro[sequenciaVitoriosa[i][0]] == tabuleiro[sequenciaVitoriosa[i][1]] && tabuleiro[sequenciaVitoriosa[i][1]]) == tabuleiro[sequenciaVitoriosa[i][2]] && tabuleiro[sequenciaVitoriosa[i][2]]!= '') {
+        if((tabuleiro[sequenciaVitoriosa[i][0]] == tabuleiro[sequenciaVitoriosa[i][1]] && tabuleiro[sequenciaVitoriosa[i][1]]) == tabuleiro[sequenciaVitoriosa[i][2]] && tabuleiro[sequenciaVitoriosa[i][2]]!= '' || tabuleiro.indexOf('') == -1) {
             simboloVencedor = tabuleiro[sequenciaVitoriosa[i][0]]
             return true
-        }        
+        }
     }
 }
 function mudarSimbolo(simbolos) {
@@ -112,7 +114,10 @@ function mudarSimbolo(simbolos) {
     return simbolos[0]         
 }
 function jogada(index) {
-    if(tabuleiro[index] != '') {
+    jogadoresSelecionados = selecaoDeJogadores()
+    if(jogadoresSelecionados == false) {
+        alert("Selecione jogadores diferentes. Você pode cadastrar novos se precisar!")
+    }else if(tabuleiro[index] != '') {
         alert("Opção já preenchida. Faça outra jogada")
     } else {
         let simbolo = mudarSimbolo(simbolos)
@@ -121,6 +126,9 @@ function jogada(index) {
         jogoFinalizado = gameOver()
         if (jogoFinalizado == true) {
             alert(`O jogador ${simboloVencedor} venceu.`)
+            selectPlayer01.disabled = false // Reabilita a troca de jogadores
+            selectPlayer02.disabled = false
+            tabuleiro.fill("") // limpar o tabuleiro
         }
     }
 }
@@ -134,6 +142,40 @@ function iniciarJogo() {
     paginaDeCadastro.style.display = 'none'
     ranking.style.display = 'none'
     paginaJogo.style.display = 'grid'
+    
+}
+function localizarIndex(nome) {
+    for (let index = 0; index < jogadores.length; index++) {
+        if(jogadores[index].nome == nome) {
+            return index
+        }
+    }
+    return -1
+}
+function selecaoDeJogadores() {
+    let player01 = {nome: selectPlayer01.value, simbolo: "O", index:""}
+    let player02 = {nome: selectPlayer02.value, simbolo: "X", index:""}
+    player01.index = localizarIndex(player01.nome)
+    player02.index = localizarIndex(player02.nome)
+    if(player01.nome == player02.nome) {
+        return false;
+    }else{
+        selectPlayer01.disabled = true
+        selectPlayer02.disabled = true
+        if (gameOver() == true) {
+            if (player01.simbolo == simboloVencedor) {
+                adicionarVitoria(player01.index)
+                adicionarDerrota(player02.index)               
+            } else if(player02.simbolo == simboloVencedor) {
+                adicionarVitoria(player02.index)
+                adicionarDerrota(player02.index)
+            } else {
+                adicionarEmpate(player01.index)
+                adicionarEmpate(player02.index)
+            }
+        }
+    }
+    return true;
     
 }
 //chamadas
