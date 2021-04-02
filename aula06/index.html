@@ -15,7 +15,7 @@
             <div id="jogo">
             </div>
             <div id="playerSelect">
-                <h2 style="color:aliceblue">Selecione os Jogadores</h2>
+                <h2 id="instrucao" style="color:aliceblue">Selecione os Jogadores</h2>
                 <select id="select-p1">
                 </select>
                 <select id="select-p2">
@@ -50,7 +50,6 @@
         <button onclick="novoJogador(document.querySelector('#iFoto').value, document.querySelector('#iNome').value)">Confirmar</button>
         </div>
         <nav id="menu">
-            <button onclick="iniciarJogo()">Jogar</button>
             <button onclick="mostrarRanking()">Ranking</button>
             <button onclick="cadastrarJogador()">Cadastrar Jogador</button>
         </nav>

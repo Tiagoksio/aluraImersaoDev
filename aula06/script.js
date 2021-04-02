@@ -105,8 +105,11 @@ const sequenciaVitoriosa = [
 ]
 function gameOver() {
     for (let i = 0; i < sequenciaVitoriosa.length; i++) {
-        if((tabuleiro[sequenciaVitoriosa[i][0]] == tabuleiro[sequenciaVitoriosa[i][1]] && tabuleiro[sequenciaVitoriosa[i][1]]) == tabuleiro[sequenciaVitoriosa[i][2]] && tabuleiro[sequenciaVitoriosa[i][2]]!= '' || tabuleiro.indexOf('') == -1) {
+        if((tabuleiro[sequenciaVitoriosa[i][0]] == tabuleiro[sequenciaVitoriosa[i][1]] && tabuleiro[sequenciaVitoriosa[i][1]]) == tabuleiro[sequenciaVitoriosa[i][2]] && tabuleiro[sequenciaVitoriosa[i][2]]!= '') {
             simboloVencedor = tabuleiro[sequenciaVitoriosa[i][0]]
+            return true
+        } else if (tabuleiro.indexOf('') == -1) {
+            simboloVencedor = ''
             return true
         }
     }
@@ -127,17 +130,16 @@ function jogada(index) {
         imprimirTabuleiro(document.querySelector('#jogo'))
         jogoFinalizado = gameOver()
         if (jogoFinalizado == true) {
-            alert(`O jogador ${simboloVencedor} venceu.`)
             if (player01.simbolo == simboloVencedor) {
-                console.log(player01.index)
-                console.log(player01.simbolo)
-                console.log(simboloVencedor)
+                document.querySelector('#instrucao').innerText = `${player01.nome} Venceu!`
                 adicionarVitoria(player01.index)
                 adicionarDerrota(player02.index)               
             } else if(player02.simbolo == simboloVencedor) {
+                document.querySelector('#instrucao').innerText = `${player02.nome} Venceu!`
                 adicionarVitoria(player02.index)
                 adicionarDerrota(player02.index)
             } else {
+                document.querySelector('#instrucao').innerText = "Jogo empatado"
                 adicionarEmpate(player01.index)
                 adicionarEmpate(player02.index)
             }
@@ -152,12 +154,6 @@ function imprimirTabuleiro(jogoDaVelha) {
     for (let i in tabuleiro) {
         jogoDaVelha.innerHTML += '<div onclick = "jogada('+i+')">' + tabuleiro[i] + '</div>'
     }
-}
-function iniciarJogo() {
-    paginaDeCadastro.style.display = 'none'
-    ranking.style.display = 'none'
-    paginaJogo.style.display = 'grid'
-    
 }
 function localizarIndex(nome) {
     for (let index = 0; index < jogadores.length; index++) {
@@ -174,7 +170,8 @@ function selecaoDeJogadores() {
     player02.index = localizarIndex(player02.nome)
     if(player01.nome == player02.nome) {
         return false;
-    }else{
+    }else if(tabuleiro.indexOf("X") == -1 && tabuleiro.indexOf("O") == -1){
+        document.querySelector('#instrucao').innerText=`${player01.simbolo} <= ${player01.nome} VS ${player02.nome} => ${player02.simbolo}`
         selectPlayer01.disabled = true
         selectPlayer02.disabled = true
     }
@@ -183,5 +180,3 @@ function selecaoDeJogadores() {
 }
 //chamadas
 imprimirTabuleiro(document.querySelector('#jogo'))
-
-
