@@ -91,6 +91,8 @@ var tabuleiro = ['','','','','','','','','']
 var simbolos = ["X", "O"]
 var jogoFinalizado = false
 var simboloVencedor
+var player01 = {nome: '', simbolo: "O", index:""}
+var player02 = {nome: '', simbolo: "X", index:""}
 const sequenciaVitoriosa = [
     [0,1,2],
     [3,4,5],
@@ -126,6 +128,19 @@ function jogada(index) {
         jogoFinalizado = gameOver()
         if (jogoFinalizado == true) {
             alert(`O jogador ${simboloVencedor} venceu.`)
+            if (player01.simbolo == simboloVencedor) {
+                console.log(player01.index)
+                console.log(player01.simbolo)
+                console.log(simboloVencedor)
+                adicionarVitoria(player01.index)
+                adicionarDerrota(player02.index)               
+            } else if(player02.simbolo == simboloVencedor) {
+                adicionarVitoria(player02.index)
+                adicionarDerrota(player02.index)
+            } else {
+                adicionarEmpate(player01.index)
+                adicionarEmpate(player02.index)
+            }
             selectPlayer01.disabled = false // Reabilita a troca de jogadores
             selectPlayer02.disabled = false
             tabuleiro.fill("") // limpar o tabuleiro
@@ -153,8 +168,8 @@ function localizarIndex(nome) {
     return -1
 }
 function selecaoDeJogadores() {
-    let player01 = {nome: selectPlayer01.value, simbolo: "O", index:""}
-    let player02 = {nome: selectPlayer02.value, simbolo: "X", index:""}
+    player01.nome = selectPlayer01.value
+    player02.nome = selectPlayer02.value
     player01.index = localizarIndex(player01.nome)
     player02.index = localizarIndex(player02.nome)
     if(player01.nome == player02.nome) {
@@ -162,18 +177,6 @@ function selecaoDeJogadores() {
     }else{
         selectPlayer01.disabled = true
         selectPlayer02.disabled = true
-        if (gameOver() == true) {
-            if (player01.simbolo == simboloVencedor) {
-                adicionarVitoria(player01.index)
-                adicionarDerrota(player02.index)               
-            } else if(player02.simbolo == simboloVencedor) {
-                adicionarVitoria(player02.index)
-                adicionarDerrota(player02.index)
-            } else {
-                adicionarEmpate(player01.index)
-                adicionarEmpate(player02.index)
-            }
-        }
     }
     return true;
     
